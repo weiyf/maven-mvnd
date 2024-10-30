@@ -35,7 +35,7 @@ jobs:
       fail-fast: true
       matrix:
         # binaries wanted: linux amd64, mac intel, mac M1, windows x86
-        os: [ ubuntu-latest, macos-13, macos-14, windows-latest ]
+        os: [ linux, ubuntu-latest, darwin ]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -211,46 +211,6 @@ jobs:
           asset_name: maven-mvnd-${{ env.VERSION }}-src.tar.gz
           asset_content_type: application/tar.gz
 
-      - name: Deploy maven-mvnd-linux-amd64.zip
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mvnd-linux-amd64/maven-mvnd-${{ env.VERSION }}-linux-amd64.zip
-          asset_name: maven-mvnd-${{ env.VERSION }}-linux-amd64.zip
-          asset_content_type: application/zip
-
-      - name: Deploy maven-mvnd-linux-amd64.tar.gz
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mvnd-linux-amd64/maven-mvnd-${{ env.VERSION }}-linux-amd64.tar.gz
-          asset_name: maven-mvnd-${{ env.VERSION }}-linux-amd64.tar.gz
-          asset_content_type: application/x-gzip
-
-      - name: Deploy maven-mvnd-darwin-amd64.zip
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mvnd-darwin-amd64/maven-mvnd-${{ env.VERSION }}-darwin-amd64.zip
-          asset_name: maven-mvnd-${{ env.VERSION }}-darwin-amd64.zip
-          asset_content_type: application/zip
-
-      - name: Deploy maven-mvnd-darwin-amd64.tar.gz
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mvnd-darwin-amd64/maven-mvnd-${{ env.VERSION }}-darwin-amd64.tar.gz
-          asset_name: maven-mvnd-${{ env.VERSION }}-darwin-amd64.tar.gz
-          asset_content_type: application/x-gzip
-
       - name: Deploy maven-mvnd-darwin-aarch64.zip
         uses: actions/upload-release-asset@v1
         env:
@@ -270,24 +230,3 @@ jobs:
           asset_path: mvnd-darwin-aarch64/maven-mvnd-${{ env.VERSION }}-darwin-aarch64.tar.gz
           asset_name: maven-mvnd-${{ env.VERSION }}-darwin-aarch64.tar.gz
           asset_content_type: application/x-gzip
-
-      - name: Deploy maven-mvnd-windows-amd64.zip
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mvnd-windows-amd64/maven-mvnd-${{ env.VERSION }}-windows-amd64.zip
-          asset_name: maven-mvnd-${{ env.VERSION }}-windows-amd64.zip
-          asset_content_type: application/zip
-
-      - name: Deploy maven-mvnd-windows-amd64.tar.gz
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mvnd-windows-amd64/maven-mvnd-${{ env.VERSION }}-windows-amd64.tar.gz
-          asset_name: maven-mvnd-${{ env.VERSION }}-windows-amd64.tar.gz
-          asset_content_type: application/x-gzip
-
